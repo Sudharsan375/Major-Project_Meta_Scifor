@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            background-color: #f9f9f9;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: white;
+        }
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .form-container input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+        .form-container input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .result {
+            font-size: 1.5em;
+            color: #4CAF50;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Loan Eligibility Prediction</h2>
+        <form action="/predict" method="post">
+            <label for="loan_amount_term">Loan Amount Term:</label>
+            <input type="number" name="loan_amount_term" required>
+
+            <label for="applicantincome">Applicant Income:</label>
+            <input type="number" name="applicantincome" required>
+
+            <label for="loan_amount">Loan Amount:</label>
+            <input type="number" name="loan_amount" required>
+
+            <label for="credit_history">Credit History:</label>
+            <input type="number" name="credit_history" min="0" max="1" required>
+
+            <label for="dependent">Dependent:</label>
+            <input type="number" name="dependent" min="0" max="1" required>
+
+            <input type="submit" value="Predict">
+        </form>
+        
+        {% if prediction_text %}
+        <div class="result">{{ prediction_text }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
